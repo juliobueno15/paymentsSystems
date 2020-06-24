@@ -1,0 +1,41 @@
+{% extends '../baseTemplate/base.html' %}
+
+{% block content %}
+    <h1>Novo Pagamento</h1>
+    <form method="POST" class="payment-form">{% csrf_token %}
+        <p><label for="id_title">Title:</label> <input type="text" name="title" placeholder="Insert Title" maxlength="200" required id="id_name"></p>
+        <p><label for="id_value">Value:</label> <input type="number" name="value" placeholder="Insert Value" maxlength="200" required id="id_address"></p>
+        <p><label for="id_observation">Observation:</label> <input type="text" name="observation" placeholder="If You Want, Inser a observation" maxlength="25" required id="id_telephone"></p>
+        <div class="row">
+            <div class="col-md-3">
+                <p>Preço R$</p>
+            </div>
+            <div class="col-md-2">
+                <p id="externalTax"></p>
+            </div>
+        </div>
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+    <script type="text/javascript">
+        setInterval("sum();",1);
+
+        function sum(){
+            
+            var value = parseFloat(document.getElementById("id_value").value);
+            if(isNaN(value))
+                value = 0;
+
+            var elem = value * 0.05;
+            var elem = elem.toFixed(2);
+
+             document.getElementById("externalTax").innerHTML= elem;
+
+           };
+
+    </script>
+    
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends '../baseTemplate/base.html' %}
+
+{% block content%}
+
+    <h1><a href="/"> payments</a></h1>
+
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                    {% for payment in payments %}
+                        <div class="payment">
+                            <h1><a href="{% url 'payment_detail' pk=payment.pk %}">{{ payment.pk }} - {{ payment.title }}</a></h1>
+                            <p>R$ {{ payment.value|floatformat:2|linebreaksbr }}</p>
+                            <p>R$ {{ payment.externalTax|floatformat:2|linebreaksbr }}</p>
+                        </div>
+                        <div class="date">
+                                <p>published: {{ payment.published_date }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+{% endblock%}

@@ -1,0 +1,25 @@
+{% extends '../baseTemplate/base.html' %}
+
+{% block content%}
+
+  {% if form.errors %}
+  <p>username or password are wrong, please try again</p>
+  {% endif %}
+
+  {% if next%}
+  <p>hey, you can't access that page</p>
+  {% endif %}
+
+  <form method="POST" action ="{%url 'login' %}">
+    {% csrf_token %}
+    <p>Username: {{form.username}}</p>
+    <p>password: {{form.password}}</p>
+
+    <p><input type="submit"  value = "login"></p>
+    <p><input type="hidden" name="next"  value = "{{ next }}"></p>
+
+    <p>Caso não possua uma conta, registre-se aqui</p>
+    <a href="{%url 'register' %}"><button>Registre-se</button></a>
+
+
+{% endblock %}
