@@ -2,21 +2,30 @@
 
 {% block content %}
     {% if user.is_authenticated %}
-        <a class="btn btn-default" href="{% url 'payment_edit' pk=payment.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-    {% endif %}
-    <div class="payment">
-        <h1>{{ payment.pk }}</h1>
-        <h1>{{ payment.title }}</h1>
-        <h3>Value</h3>
-        <p>R$ {{ payment.value|floatformat:2|linebreaksbr }}</p>
-        <h3>External Tax</h3>
-        <p>R$ {{ payment.externalTax|floatformat:2|linebreaksbr }}</p>
-        <h3>Observations</h3>
-        <p>{{ payment.observation|linebreaksbr }}</p>
-    </div>
-    {% if payment.published_date %}
-        <div class="date">
-            {{ payment.published_date }}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1><a href="{% url 'payment_detail' pk=payment.pk %}">{{ payment.pk }} - {{ payment.title }}</a></h1>
+            </div>
+            <div class="panel-body">
+                <h3>Value</h3>
+                <p>R$ {{ payment.value|floatformat:2|linebreaksbr }}</p>
+                <h3>External Tax</h3>
+                <p>R$ {{ payment.externalTax|floatformat:2|linebreaksbr }}</p>
+                <h3>Observations</h3>
+                <p>{{ payment.observation|linebreaksbr }}</p>
+                <h3>Author</h3>
+                <p>{{ payment.author|linebreaksbr }}</p>
+                <a class="btn btn-default" href="{% url 'payment_edit' pk=payment.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                <a class="btn btn-delete" href="{% url 'payment_delete' pk=payment.pk %}"><span class="glyphicon glyphicon-trash"></span></a>
+                <p></p>
+                <p>published: {{ payment.published_date }}</p>
+            </div>
         </div>
     {% endif %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+        $(".nav li").removeClass("active");//this will remove the active class from  
+                                           //previously active menu item 
+      });
+    </script>
 {% endblock %}

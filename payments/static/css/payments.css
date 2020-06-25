@@ -1,13 +1,13 @@
 h1 a {
-    color: #FCA205;
-    font-family: 'Lobster';
+    color: #009fff;
+    font-family: 'Rubik', sans-serif;
 }
 body {
     padding-left: 15px;
 }
 
 .page-header {
-    background-color: #ff9400;
+    background-color: #009fff;
     margin-top: 0;
     padding: 20px 20px 20px 40px;
 }
@@ -23,7 +23,7 @@ body {
 }
 
 h1, h2, h3, h4 {
-    font-family: 'Lobster', cursive;
+    font-family: 'Rubik', sans-serif;
 }
 
 .date {
@@ -34,6 +34,20 @@ h1, h2, h3, h4 {
     float: right;
 }
 
+.btn-delete {
+    text-shadow: 0 1px 0 #fff;
+    background-image: -webkit-linear-gradient(top,#fff 0,#e0e0e0 100%);
+    background-image: -o-linear-gradient(top,#fff 0,#e0e0e0 100%);
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#e0e0e0));
+    background-image: linear-gradient(to bottom,#fff 0,#e0e0e0 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe0e0e0', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+    background-repeat: repeat-x;
+    border-color: #dbdbdb;
+    color: #f00;
+    border-color: #ccc;
+}
+
 .payment-form textarea, .payment-form input {
     width: 100%;
 }
@@ -41,8 +55,8 @@ h1, h2, h3, h4 {
 .top-menu, .top-menu:hover, .top-menu:visited {
     color: #ffffff;
     float: right;
-    font-size: 26pt;
-    margin-right: 20px;
+    /* font-size: 26pt; */
+    /* margin-right: 20px; */
 }
 
 .payment {
@@ -51,4 +65,13 @@ h1, h2, h3, h4 {
 
 .payment h1 a, .payment h1 a:visited {
     color: #000000;
+}
+
+.navbar-default .navbar-brand {
+    color: #009fff;
+}
+
+h1{
+    font-family: 'Rubik', sans-serif;
+    color: #009fff;
 }

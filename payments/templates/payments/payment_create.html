@@ -1,15 +1,16 @@
 {% extends '../baseTemplate/base.html' %}
 
 {% block content %}
+
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h1>Edit Payment</h1>
+            <h1>New Payment</h1>
         </div>
         <div class="panel-body">
             <form method="POST" class="payment-form">{% csrf_token %}
-                <p><label for="id_title">Title:</label> <input type="text" name="title" placeholder="Insert Title" minlength="5" maxlength="100" required id="id_title" value={{ form.title.value }}></p>
-                <p><label for="id_value">Value:</label> <input type="number" name="value" placeholder="Insert Value" maxlength="50" required id="id_value" value= {{ form.value.value }} ></p>
-                <p><label for="id_observation">Observation:</label> <input type="text" name="observation" placeholder="If You Want, Inser a observation" maxlength="250" value={{ form.observation.value }}></p>
+                <p><label for="id_title">Title:</label> <input type="text" name="title" placeholder="Insert Title" minlength="5" maxlength="100" required id="id_title"></p>
+                <p><label for="id_value">Value:</label> <input type="number" name="value" placeholder="Insert Value" maxlength="50" required id="id_value"></p>
+                <p><label for="id_observation">Observation:</label> <input type="text" name="observation" placeholder="If You Want, Inser a observation" maxlength="250" value=""></p>
                 <label for="id_observation">External Tax:</label>
                 <p id="externalTax"></p>
                 <button type="submit" class="save btn btn-default">Save</button>
@@ -18,13 +19,13 @@
     </div>
 
     <script type="text/javascript">
-
+        
         calculateExternalTax();
 
         document.getElementById("id_value").addEventListener('change', calculateExternalTax);
 
         function calculateExternalTax(){
-            var value = parseFloat(document.getElementById("id_value").value);
+            var value = parseFloat(this.value);
             if(isNaN(value))
                 value = 0;
 
@@ -36,12 +37,13 @@
         }
 
     </script>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-    $(".nav li").removeClass("active");//this will remove the active class from  
-                                       //previously active menu item 
-  });
-</script>
     
+    <script type="text/javascript">
+        $(document).ready(function () {
+        $(".nav li").removeClass("active");//this will remove the active class from  
+                                           //previously active menu item 
+        $('#newPayment').addClass('active');
+      });
+    </script>
+
 {% endblock %}

@@ -1,0 +1,25 @@
+{% extends '../baseTemplate/base.html' %}
+
+{% block content%}<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1>Upload file</h1>
+    </div>
+    <div class="panel-body">
+        <form method="post" enctype="multipart/form-data">{% csrf_token %}
+            <label>Select file:</label> 
+            <input type="file" name="excel_file">
+            <p></p>
+            <button type="submit">Upload</button>
+        </form>
+    </div>
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+        $(".nav li").removeClass("active");//this will remove the active class from  
+                                           //previously active menu item 
+        $('#upload').addClass('active');
+      });
+    </script>
+    
+
+{% endblock%}

@@ -6,6 +6,9 @@ from django.shortcuts import redirect
 from .forms import PaymentForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
+from django.core.files.storage import FileSystemStorage
+import pandas as pd
+import datetime
 
 
 def payment_list(request):
@@ -32,7 +35,7 @@ def payment_new(request):
                 return redirect('payment_detail', pk=payment.pk)
     else:
         form = PaymentForm()
-    return render(request, 'payments/payment_edit.html', {'form': form})
+    return render(request, 'payments/payment_create.html', {'form': form})
 
 
 def payment_edit(request, pk):
@@ -47,9 +50,17 @@ def payment_edit(request, pk):
                 payment.save()
                 return redirect('payment_detail', pk=payment.pk)
     else:
-        form = PaymentForm(instance=payment)
+        pay = Payment.objects.get(id=payment.pk)
+        form = PaymentForm(instance=pay)
     return render(request, 'payments/payment_edit.html', {'form': form})
 
+def payment_delete(request, pk):
+    payment = get_object_or_404(Payment, pk=pk)
+    if request.user.is_authenticated:
+        payment.delete()
+        return redirect('payment_list')
+    else:
+        return redirect('payment_list')
 
 def register(request):
     if request.method == 'POST':
@@ -58,6 +69,7 @@ def register(request):
             form.save()
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
+            print(username)
             user = authenticate(username=username, password=password)
             login(request, user)
             return redirect('payment_list')
@@ -67,7 +79,36 @@ def register(request):
 
 
 
+def uploadExcel(request):
+    if request.method == "GET":
+        return render(request, 'payments/uploadExcel.html', {})
+    
+    if request.method == 'POST' and request.FILES['excel_file']:
+        myfile = request.FILES['excel_file']
+        fs = FileSystemStorage()
+        filename = fs.save(myfile.name, myfile)
+        print("file name" + filename)
+        df = pd.read_excel("media/"+filename)
+        
+        for index, row in df.iterrows():    
+            if pd.isnull(row["Data do Lançamento"]):
+                row["Data do Lançamento"] = timezone.now()
+            # else:
+            #     row["Data do Lançamento"] = datetime.datetime.strptime(row["Data do Lançamento"], '%Y-%m-%d')
 
+            
+            if pd.isnull(row["Observações"]):
+                row["Observações"]=""
+
+            payment = Payment()
+            payment.author = request.user
+            payment.title = row["Título"]
+            payment.value = row["Valor"]
+            payment.publish(publishDate = row["Data do Lançamento"])
+            payment.observation = row["Observações"]
+            payment.save()
+
+        return redirect('payment_list')
 
 
 

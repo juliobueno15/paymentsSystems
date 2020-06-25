@@ -8,13 +8,13 @@ class Payment(models.Model):
     title = models.CharField(max_length=100)
     value = models.FloatField()
     externalTax = models.FloatField(null=True, blank=True)
-    observation = models.TextField()
+    observation = models.TextField(blank=True, null=True)
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
 
-    def publish(self):
+    def publish(self,publishDate=timezone.now()):
         self.externalTax = self.value * 0.05
-        self.published_date = timezone.now()
+        self.published_date = publishDate
         self.save()
 
     def __str__(self):
