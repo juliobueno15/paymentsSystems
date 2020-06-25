@@ -12,10 +12,8 @@ class Payment(models.Model):
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
 
-    def publish(self,publishDate=timezone.now()):
+    def calculateExternalTax(self,publishDate=timezone.now()):
         self.externalTax = self.value * 0.05
-        self.published_date = publishDate
-        self.save()
 
     def __str__(self):
         return self.title

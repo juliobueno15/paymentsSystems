@@ -7,7 +7,7 @@ body {
 }
 
 .page-header {
-    background-color: #009fff;
+    background-color: #ffffff;
     margin-top: 0;
     padding: 20px 20px 20px 40px;
 }
@@ -53,7 +53,7 @@ h1, h2, h3, h4 {
 }
 
 .top-menu, .top-menu:hover, .top-menu:visited {
-    color: #ffffff;
+    color: #009fff;
     float: right;
     /* font-size: 26pt; */
     /* margin-right: 20px; */
@@ -65,6 +65,11 @@ h1, h2, h3, h4 {
 
 .payment h1 a, .payment h1 a:visited {
     color: #000000;
+}
+
+
+.navbar {
+    background-color: #009fff;
 }
 
 .navbar-default .navbar-brand {

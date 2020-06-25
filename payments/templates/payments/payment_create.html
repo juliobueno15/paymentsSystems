@@ -10,6 +10,7 @@
             <form method="POST" class="payment-form">{% csrf_token %}
                 <p><label for="id_title">Title:</label> <input type="text" name="title" placeholder="Insert Title" minlength="5" maxlength="100" required id="id_title"></p>
                 <p><label for="id_value">Value:</label> <input type="number" name="value" placeholder="Insert Value" maxlength="50" required id="id_value"></p>
+                <p><label for="id_published_date">Date:</label> <input type="date" name="published_date" required id="id_published_date"></p>
                 <p><label for="id_observation">Observation:</label> <input type="text" name="observation" placeholder="If You Want, Inser a observation" maxlength="250" value=""></p>
                 <label for="id_observation">External Tax:</label>
                 <p id="externalTax"></p>
@@ -18,8 +19,10 @@
         </div>
     </div>
 
+    
+
     <script type="text/javascript">
-        
+            
         calculateExternalTax();
 
         document.getElementById("id_value").addEventListener('change', calculateExternalTax);

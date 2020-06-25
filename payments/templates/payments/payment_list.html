@@ -18,9 +18,14 @@
                                 <p>R$ {{ payment.value|floatformat:2|linebreaksbr }}</p>
                                 <h4>External Tax</h4>
                                 <p>R$ {{ payment.externalTax|floatformat:2|linebreaksbr }}</p>
+                                <h4>Date</h4>
+                                <p>{{ payment.published_date |date:"Y-m-d"}}</p>
+                                <h4>Observations</h4>
+                                <p>{{ payment.observation}}</p>
                                 <a class="btn btn-default" href="{% url 'payment_edit' pk=payment.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
                                 <a class="btn btn-delete" href="{% url 'payment_delete' pk=payment.pk %}"><span class="glyphicon glyphicon-trash"></span></a>
-                                <p>published: {{ payment.published_date }}</p>
+                                <p>created at: {{ payment.created_date }}</p>
+                                
                             </div>
                         </div>
                     {% endfor %}

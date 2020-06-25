@@ -18,7 +18,8 @@
                 <a class="btn btn-default" href="{% url 'payment_edit' pk=payment.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
                 <a class="btn btn-delete" href="{% url 'payment_delete' pk=payment.pk %}"><span class="glyphicon glyphicon-trash"></span></a>
                 <p></p>
-                <p>published: {{ payment.published_date }}</p>
+                <p>payment date: {{ payment.published_date }}</p>
+                <p>created at: {{ payment.created_date }}</p>
             </div>
         </div>
     {% endif %}

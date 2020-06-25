@@ -4,4 +4,4 @@ from .models import Payment
 class PaymentForm(forms.ModelForm):
     class Meta:
         model = Payment
-        fields= ("title","value","observation")
+        fields= ("title","value","published_date","observation")

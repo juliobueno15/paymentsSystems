@@ -15,3 +15,9 @@
 
 #### Executar o servidor de desenvolvimento
 - `./manage.py runserver`
+
+## entrar no sistema
+Após executar o servidor, deve-se entrar em http://localhost:8000/ para se ter acesso a página do sistema. No canto superior direito haverá um botão para login que levará o usuário a uma página onde ele pode efetuar o login com os dados registrados como super user ou então cadastrar-se como novo usuário.
+
+## Arquivos inseridos no sistema
+Os arquivos inseridos no sistema ficaram no diretório raiz do projeto dentro da pasta **media** 

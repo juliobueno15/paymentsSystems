@@ -13,6 +13,14 @@
         </form>
     </div>
     
+    {% if messages %}
+        {% for message in messages %}
+         {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+
+        {% endfor %}
+
+    {% endif %}
+
     <script type="text/javascript">
         $(document).ready(function () {
         $(".nav li").removeClass("active");//this will remove the active class from  
