@@ -1,6 +1,7 @@
 # README
 
-### Criando o ambiente virtual para projeto já existente
+### Requisitos
+- `python >= 3.5`
 
 #### No diretório raiz do projeto executar o comando
 - `python3 -m venv <nome da sua venv>`
